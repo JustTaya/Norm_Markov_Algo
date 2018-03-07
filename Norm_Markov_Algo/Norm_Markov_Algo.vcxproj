@@ -115,6 +115,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Markov_Algo.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Linked_List.h" />
+    <ClInclude Include="Markov_Algo.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
