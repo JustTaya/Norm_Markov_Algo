@@ -2,33 +2,33 @@
 #include <iostream>
 
 template <class T>
-struct TNode
+struct TNode_l
 {
-	T dat;
-	TNode<T>* next = NULL;
+	T data;
+	TNode_l<T>* next = NULL;
 };
 
 template <class T>
-class Linked_List {
-private:
-	TNode<T> *begnode = NULL;
-	TNode<T> *headnode = NULL;
-	bool empty;
+class LinkedList {
 public:
-	TNode<T> *it = NULL;
-	Linked_List();
-	~Linked_List();
-	bool SetIterator(size_t pos);    //set iterator  to chosen node
-	T ReturnVal();                   //return value of the node and set iterator to the next one
-	bool PushBack(T data);           //add node to the end of the list
-	bool Insert(size_t pos, T data); //add node to the chosen place of list
-	bool DelElement(size_t pos);     //delete chosen node
-	size_t Numb();                   //reurn number of nodes
-	TNode<T>* End();                 //return pointer to the last node
+	TNode_l<T> *it = NULL;
+	LinkedList();
+	~LinkedList();
+	bool setIterator(size_t position);
+	T returnVal();
+	bool pushBack(T inputData);
+	bool insert(size_t position, T inputData);
+	bool delElement(size_t position);
+	size_t numb();
+	TNode_l<T>* end();
+private:
+	TNode_l<T> *begnode = NULL;
+	TNode_l<T> *headnode = NULL;
+	bool empty;
 };
 
 template<class T>
-Linked_List<T>::Linked_List()
+LinkedList<T>::LinkedList()
 {
 	this->begnode = NULL;
 	this->headnode = this->begnode;
@@ -37,9 +37,9 @@ Linked_List<T>::Linked_List()
 }
 
 template<class T>
-Linked_List<T>::~Linked_List()
+LinkedList<T>::~LinkedList()
 {
-	TNode<T>*node;
+	TNode_l<T>*node;
 	while (begnode != NULL) {
 		node = this->begnode;
 		this->begnode = (this->begnode)->next;
@@ -48,27 +48,27 @@ Linked_List<T>::~Linked_List()
 }
 
 template<class T>
-inline bool Linked_List<T>::SetIterator(size_t pos)
+bool LinkedList<T>::setIterator(size_t position)
 {
 	this->it = this->begnode;
-	for (size_t i = 0; i < pos - 1; i++)
+	for (size_t i = 0; i < position - 1; i++)
 		this->it = (this->it)->next;
 	return false;
 }
 
 template<class T>
-T Linked_List<T>::ReturnVal()
+T LinkedList<T>::returnVal()
 {
-	TNode<T> *node = this->it;
+	TNode_l<T> *node = this->it;
 	this->it = it->next;
-	return T(node->dat);
+	return T(node->data);
 }
 
 template<class T>
-bool Linked_List<T>::PushBack(T data)
+bool LinkedList<T>::pushBack(T inputData)
 {
-	TNode<T>* tmp = new TNode<T>();
-	tmp->dat = data;
+	TNode_l<T>* tmp = new TNode_l<T>();
+	tmp->data = inputData;
 	if (empty) {
 		empty = false;
 		this->begnode = tmp;
@@ -82,18 +82,18 @@ bool Linked_List<T>::PushBack(T data)
 }
 
 template<class T>
-bool Linked_List<T>::Insert(size_t pos, T data)
+bool LinkedList<T>::insert(size_t position, T inputData)
 {
-	TNode<T>*node = new TNode<T>();
-	node->dat = data;
-	if (pos == 1) {
+	TNode_l<T>*node = new TNode_l<T>();
+	node->dat = inputData;
+	if (position == 1) {
 		node->next = this->begnode;
 		begnode = node;
 		return true;
 	}
 	else {
-		TNode<T>* tmp = this->begnode;
-		for (size_t i = 0; i < pos - 2 && tmp->next; i++)
+		TNode_l<T>* tmp = this->begnode;
+		for (size_t i = 0; i < position - 2 && tmp->next; i++)
 			tmp = tmp->next;
 		node->next = tmp->next;
 		tmp->next = node;
@@ -105,21 +105,21 @@ bool Linked_List<T>::Insert(size_t pos, T data)
 }
 
 template<class T>
-bool Linked_List<T>::DelElement(size_t pos)
+bool LinkedList<T>::delElement(size_t position)
 {
-	TNode<T>*tmp = this->begnode;
-	if (pos == 1) {
+	TNode_l<T>*tmp = this->begnode;
+	if (position == 1) {
 		this->begnode = (this->begnode)->next;
 		delete tmp;
 		return true;
 	}
 	else {
-		for (size_t i = 0; i < pos - 2; i++) {
+		for (size_t i = 0; i < position - 2; i++) {
 			if (tmp->next == NULL)
 				return false;
 			tmp = tmp->next;
 		}
-		TNode<T>*del = tmp->next;
+		TNode_l<T>*del = tmp->next;
 		tmp->next = (tmp->next)->next;
 		delete del;
 		if (tmp->next == NULL)
@@ -130,9 +130,9 @@ bool Linked_List<T>::DelElement(size_t pos)
 }
 
 template<class T>
-size_t Linked_List<T>::Numb()
+size_t LinkedList<T>::numb()
 {
-	TNode<T>* tmp = this->begnode;
+	TNode_l<T>* tmp = this->begnode;
 	size_t k = 1;
 	while (tmp != this->headnode)
 	{
@@ -143,7 +143,7 @@ size_t Linked_List<T>::Numb()
 }
 
 template<class T>
-TNode<T>* Linked_List<T>::End()
+TNode_l<T>* LinkedList<T>::end()
 {
 	return (this->headnode);
 }

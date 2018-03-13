@@ -15,7 +15,7 @@ struct TRule {
 class MarkovAlgo {
 private:
 	std::fstream fin;
-	Linked_List<TRule> rules;
+	LinkedList<TRule> rules;
 public:
 	MarkovAlgo();
 	~MarkovAlgo();

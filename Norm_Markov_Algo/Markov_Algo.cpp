@@ -45,7 +45,7 @@ MarkovAlgo::MarkovAlgo()
 				tmp.to.append(buff);
 			}
 		}
-		rules.PushBack(tmp);
+		rules.pushBack(tmp);
 		flag = false;
 		tmp.from = ""; tmp.to = ""; tmp.term = false; ss.clear();
 	}
@@ -59,12 +59,12 @@ MarkovAlgo::~MarkovAlgo()
 std::string MarkovAlgo::work(std::string in)
 {
 	std::string out = in;
-	size_t n = rules.Numb();
+	size_t n = rules.numb();
 	TRule tmp;
-	rules.SetIterator(1);
+	rules.setIterator(1);
 
 	for (size_t i = 0; i < n; i++) {
-		tmp = rules.ReturnVal();
+		tmp = rules.returnVal();
 		size_t pos = out.find(tmp.from, 0);
 
 		if (pos != std::string::npos) {
